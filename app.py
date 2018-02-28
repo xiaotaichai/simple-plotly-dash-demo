@@ -59,12 +59,21 @@ def update_graph(selected_dropdown_value, start_date, end_date):
             'line': {
                 'width': 3,
                 'shape': 'spline'
-            }
+            },
+            'name': 'closing price'
         }
+    outer_bands = half_double(df.Close)
+    outer_traces_list = [{
+        'x': df.index, 'y': y_vals,
+        'type': 'scatter', 'mode': 'lines',
+        'line': {'width': 1},
+        'name': 'half' if i == 0 else 'double'
+    } for i, y_vals in enumerate(outer_bands)]
+
 
     # return a dictionary which is fed to my-graph
     return {
-        'data': [price_data],
+        'data': [price_data] + outer_traces_list,
         'layout': {  # legend would go in here
             'margin': {
                 'l': 30,
