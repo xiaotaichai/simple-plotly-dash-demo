@@ -67,7 +67,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
         }
 
     half_data = {
-        'x': df.index, 'y': df.Close,
+        'x': df.index, 'y': half(df.Close),
         'type': 'scatter', 'mode': 'lines',
         'line': {'width': 1},
         'name': 'half'
