@@ -59,24 +59,21 @@ def update_graph(selected_dropdown_value, start_date, end_date):
     price_data = {
             'x': df.index,
             'y': df.Close,
-            'line': {
-                'width': 3,
-                'shape': 'spline'
-            },
+            'line': { 'width': 3 },
             'name': 'closing price'
         }
 
     # added dicts for other data
     half_data = {
-        'x': df.index, 'y': half(df.Close),
-        'type': 'scatter', 'mode': 'lines',
+        'x': df.index,
+        'y': half(df.Close),
         'line': {'width': 1},
         'name': 'half'
     }
 
     double_data = {
-        'x': df.index, 'y': double(df.Close),
-        'type': 'scatter', 'mode': 'lines',
+        'x': df.index,
+        'y': double(df.Close),
         'line': {'width': 1},
         'name': 'double'
     }
