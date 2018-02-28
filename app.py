@@ -53,10 +53,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
     price_data = {
             'x': df.index,
             'y': df.Close,
-            'line': {
-                'width': 3,
-                'shape': 'spline'
-            }
+            'line': { 'width': 3}
         }
 
     # return a dictionary which is fed to my-graph
