@@ -24,11 +24,15 @@ app.layout = html.Div([
             {'label': 'Tesla', 'value': 'TSLA'},
             {'label': 'Apple', 'value': 'AAPL'}
         ],
-        value='COKE'
+        value='COKE'  # the default value when you open the app
     ),
-    dcc.Graph(id='my-graph')  # ... as well as a graph template
+    dcc.Graph(id='my-graph')  # ... as well as a graph template that takes a
+                              # Pandas Dataframe
 ], className="container")
 
+# this is a Python decorator. It feeds update_graph() into app.callback().
+# It fetches the value from my-dropdown and feeds it into update_graph() as
+# selected_dropdown_value.
 @app.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value')])
 def update_graph(selected_dropdown_value):
     df = web.DataReader(
