@@ -66,6 +66,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
             'name': 'closing price'
         }
 
+    # added dicts for other data
     half_data = {
         'x': df.index, 'y': half(df.Close),
         'type': 'scatter', 'mode': 'lines',
@@ -82,7 +83,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
 
     # return a dictionary which is fed to my-graph
     return {
-        'data': [price_data, half_data, double_data],
+        'data': [price_data, half_data, double_data],  # list of dictionaries
         'layout': {  # legend would go in here
             'margin': {
                 'l': 30,
@@ -90,7 +91,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
                 'b': 30,
                 't': 20
             },
-            'xaxis': {'title': 'Time'},
+            'xaxis': {'title': 'Date'},
             'yaxis': {'title': 'Price'}
         }
     }
