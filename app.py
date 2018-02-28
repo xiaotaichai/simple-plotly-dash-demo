@@ -39,6 +39,9 @@ app.layout = html.Div([
     )
 ], className="container")
 
+def half_double(price):
+    return price/2, price*2
+
 # this is a Python decorator. It feeds update_graph() into app.callback().
 # It fetches the value from my-dropdown and feeds it into update_graph() as
 # selected_dropdown_value.
@@ -50,17 +53,19 @@ def update_graph(selected_dropdown_value, start_date, end_date):
         selected_dropdown_value, data_source='google',
         start=start_date, end=end_date)
 
-    # return a dictionary which is fed to my-graph
-    return {
-        'data': [{
+    price_data = {
             'x': df.index,
             'y': df.Close,
             'line': {
                 'width': 3,
                 'shape': 'spline'
             }
-        }],
-        'layout': {
+        }
+
+    # return a dictionary which is fed to my-graph
+    return {
+        'data': [price_data],
+        'layout': {  # legend would go in here
             'margin': {
                 'l': 30,
                 'r': 20,
