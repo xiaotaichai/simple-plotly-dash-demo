@@ -61,7 +61,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
 
     # return a dictionary which is fed to my-graph
     return {
-        'data': [price_data],
+        'data': [price_data],  # list of data dictionaries
         'layout': {  # legend would go here
             'margin': {
                 'l': 30,
