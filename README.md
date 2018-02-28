@@ -8,3 +8,5 @@ To learn more check out our [documentation](https://plot.ly/dash).
 
 The following are screenshots for the app in this repo:
 ![Alt desc](https://github.com/plotly/dash-hello-world/raw/master/Screenshots/Dash-Hello-World-Photo.png)
+
+This app 
