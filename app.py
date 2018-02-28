@@ -66,7 +66,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
                 'b': 30,
                 't': 20
             },
-            'title': 'Fig Title',
+            'title': 'An Ugly Figure Title',
             'xaxis': {'title': 'Time'},
             'yaxis': {'title': 'Price'}
         }
