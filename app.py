@@ -39,8 +39,11 @@ app.layout = html.Div([
     )
 ], className="container")
 
-def half_double(price):
-    return price/2, price*2
+def half(price):
+    return price/2
+
+def double(price):
+    return price*2
 
 # this is a Python decorator. It feeds update_graph() into app.callback().
 # It fetches the value from my-dropdown and feeds it into update_graph() as
@@ -62,18 +65,24 @@ def update_graph(selected_dropdown_value, start_date, end_date):
             },
             'name': 'closing price'
         }
-    outer_bands = half_double(df.Close)
-    outer_traces_list = [{
-        'x': df.index, 'y': y_vals,
+
+    half_data = {
+        'x': df.index, 'y': df.Close,
         'type': 'scatter', 'mode': 'lines',
         'line': {'width': 1},
-        'name': 'half' if i == 0 else 'double'
-    } for i, y_vals in enumerate(outer_bands)]
+        'name': 'half'
+    }
 
+    double_data = {
+        'x': df.index, 'y': double(df.Close),
+        'type': 'scatter', 'mode': 'lines',
+        'line': {'width': 1},
+        'name': 'double'
+    }
 
     # return a dictionary which is fed to my-graph
     return {
-        'data': [price_data] + outer_traces_list,
+        'data': [price_data, half_data, double_data],
         'layout': {  # legend would go in here
             'margin': {
                 'l': 30,
@@ -81,7 +90,6 @@ def update_graph(selected_dropdown_value, start_date, end_date):
                 'b': 30,
                 't': 20
             },
-            'title': 'Fig Title',
             'xaxis': {'title': 'Time'},
             'yaxis': {'title': 'Price'}
         }
