@@ -29,6 +29,9 @@ app.layout = html.Div([
     ),
     dcc.Graph(id='my-graph'),  # ... as well as a graph template that takes a
                               # dictionary created by update_graph()
+
+    # added a Date Picker Range from dash core components
+    # more options here https://plot.ly/dash/dash-core-components/datepickerrange
     dcc.DatePickerRange(
         id='date-picker-range',
         start_date=dt(2001, 1, 1),
@@ -40,7 +43,7 @@ app.layout = html.Div([
 # It fetches the value from my-dropdown and feeds it into update_graph() as
 # selected_dropdown_value.
 @app.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value'),
-                                             Input('date-picker-range', 'start_date'),
+                                             Input('date-picker-range', 'start_date'),  # added more inputs
                                              Input('date-picker-range', 'end_date')])
 def update_graph(selected_dropdown_value, start_date, end_date):
     df = web.DataReader(
@@ -63,7 +66,10 @@ def update_graph(selected_dropdown_value, start_date, end_date):
                 'r': 20,
                 'b': 30,
                 't': 20
-            }
+            },
+            'title': 'Fig Title',
+            'xaxis': {'title': 'Time'},
+            'yaxis': {'title': 'Price'}
         }
     }
 
