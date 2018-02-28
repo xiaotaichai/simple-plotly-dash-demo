@@ -27,7 +27,7 @@ app.layout = html.Div([
         value='COKE'  # the default value when you open the app
     ),
     dcc.Graph(id='my-graph')  # ... as well as a graph template that takes a
-                              # Pandas Dataframe
+                              # dictionary created by update_graph()
 ], className="container")
 
 # this is a Python decorator. It feeds update_graph() into app.callback().
@@ -38,6 +38,8 @@ def update_graph(selected_dropdown_value):
     df = web.DataReader(
         selected_dropdown_value, data_source='google',
         start=dt(2017, 1, 1), end=dt.now())
+
+    # return a dictionary which is fed to my-graph
     return {
         'data': [{
             'x': df.index,
@@ -57,6 +59,6 @@ def update_graph(selected_dropdown_value):
         }
     }
 
-
+# starts a webserver when running python app.py
 if __name__ == '__main__':
     app.run_server()
