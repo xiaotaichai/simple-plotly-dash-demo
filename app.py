@@ -16,8 +16,12 @@ app = dash.Dash('app', server=server)
 
 # This is a Python wrapper for generating HTML code.
 app.layout = html.Div([
-    html.H1('My better stock ticker title'),  # make a big header at the top
-    dcc.Dropdown(  # dash-core-components has a Dropdown template
+    html.H1('My better stock ticker title'),
+    # make a big header at the top
+
+    # dash-core-components automatically generates code for graphs, dropdowns, and
+    # other useful elements
+    dcc.Dropdown(
         id='my-dropdown',
         options=[
             {'label': 'Coke', 'value': 'COKE'},
@@ -27,8 +31,9 @@ app.layout = html.Div([
         ],
         value='COKE'  # the default value when you open the app
     ),
-    dcc.Graph(id='my-graph'),  # ... as well as a graph template that takes a
-                              # dictionary created by update_graph()
+
+    # the Graph() element takes a dictionary, which we will create with update_graph()
+    dcc.Graph(id='my-graph'),
 
     # added a Date Picker Range from dash core components
     # more options here https://plot.ly/dash/dash-core-components/datepickerrange
@@ -53,7 +58,7 @@ def update_graph(selected_dropdown_value, start_date, end_date):
     price_data = {
             'x': df.index,
             'y': df.Close,
-            'line': { 'width': 3}
+            'line': {'width': 3}
         }
 
     # return a dictionary which is fed to my-graph
