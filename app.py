@@ -16,8 +16,7 @@ app = dash.Dash('app', server=server)
 
 # This is a Python wrapper for generating HTML code.
 app.layout = html.Div([
-    html.H1('My better stock ticker title'),
-    # make a big header at the top
+    html.H1('My better stock ticker title'),  # make a big header at the top
 
     # dash-core-components automatically generates code for graphs, dropdowns, and
     # other useful elements
@@ -29,10 +28,11 @@ app.layout = html.Div([
             {'label': 'Chipotle', 'value': 'CPE'},
             {'label': 'Apple', 'value': 'AAPL'}
         ],
-        value='COKE'  # the default value when you open the app
+        value='COKE'  # the default value when you open the app, it gets updated when
+                      # you select a new value from the dropdown
     ),
 
-    # the Graph() element takes a dictionary, which we will create with update_graph()
+    # Graph() takes a dictionary, which we will create with update_graph()
     dcc.Graph(id='my-graph'),
 
     # added a Date Picker Range from dash core components
@@ -41,8 +41,8 @@ app.layout = html.Div([
         id='date-picker-range',
         start_date=dt(2001, 1, 1),
         end_date=dt.now()
-    )
-], className="container")
+        )
+    ], className="container")
 
 # this is a Python decorator. It feeds update_graph() into app.callback().
 # It fetches the value from my-dropdown and feeds it into update_graph() as
